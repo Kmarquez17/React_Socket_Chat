@@ -1,0 +1,27 @@
+        1.React
+        ------------------------------------------------------------------------------------------
+            React es una librería Javascript focalizada en el desarrollo de interfaces de usuario. 
+            Esa es su principal área de trabajo, pero lo cierto es que con todo el ecosistema de 
+            aplicaciones y herramientas y componentes, con React encontramos un excelente aliado 
+            para hacer todo tipo de aplicaciones web, SPA (Single Page Application) o incluso 
+            aplicaciones para móviles.
+        ------------------------------------------------------------------------------------------
+
+        2. NodeJS
+        --------------------------------------------------------------------------------------------------
+        es un entorno JavaScript de lado de servidor que utiliza un modelo asíncrono y dirigido por eventos.
+        --------------------------------------------------------------------------------------------------
+
+        3.Express
+        --------------------------------------------------------------------------------------------------------
+        Express es una infraestructura de aplicaciones web Node.js mínima y flexible que proporciona un conjunto 
+        sólido de características para las aplicaciones web y móviles.
+        --------------------------------------------------------------------------------------------------------
+
+        4.Socket.io
+        --------------------------------------------------------------------------------------------------------
+        Es una biblioteca de JavaScript para aplicaciones web en tiempo real. Permite la comunicación bidireccional 
+        en tiempo real entre clientes web y servidores. Tiene dos partes: una biblioteca del lado del cliente que se
+        ejecuta en el navegador y una biblioteca del lado del servidor para Node.js. Ambos componentes tienen una API
+        casi idéntica. Al igual que Node.js, es impulsado por eventos.
+        --------------------------------------------------------------------------------------------------------
