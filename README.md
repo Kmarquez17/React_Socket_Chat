@@ -1,3 +1,3 @@
-# Chat App Tutorial Using React.js Socket.io and Node.js
+# Chat usando React.js Socket.io y Node.js
 ---
-This is a repository for my Medium.com tutorial.
+Creacion de un chat con herramientas de javascript, para un desarrollo rapido
