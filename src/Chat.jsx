@@ -1,41 +1,45 @@
 import React from "react";
 import io from "socket.io-client";
+import {Button} from 'react-bootstrap'
 
 class Chat extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: '',
-            message: '',
-            messages: []
+            nombre: '',
+            msj: '',
+            mensajes: []
         };
+    }
 
+    componentDidMount = () => {
+        //Conectamos con el puerto que estamos corriendo en el servidor
         this.socket = io('localhost:5000');
-
-        this.socket.on('RECEIVE_MESSAGE', function (data) {
-            addMessage(data);
+        //Recibimos el mesensaje
+        this.socket.on('RECEIVE_MESSAGE', (data) => {
+            this.setState({ mensajes: [...this.state.mensajes, data] });
         });
-
-        const addMessage = data => {
-            console.log(data);
-            this.setState({ messages: [...this.state.messages, data] });
-            console.log(this.state.messages);
-        };
-
-        this.sendMessage = ev => {
-            ev.preventDefault();
-            if (ev.keyCode === 13) {
-                this.socket.emit('SEND_MESSAGE', {
-                    author: this.state.username,
-                    message: this.state.message
-                })
-                this.setState({ message: '' });
-            }else{
-                
-            }
+    }
+    
+    onEnviarMsj = (ev) => {
+        ev.preventDefault();
+        if (ev.keyCode === 13 && (this.state.msj !== '' && this.state.nombre !== '')) {
+            //Enviamos el mensaje
+            this.socket.emit('SEND_MESSAGE', {
+                author: this.state.nombre,
+                message: this.state.msj
+            })
+            this.setState({ msj: '' });
         }
     }
+
+    onChangeValue = (ev) =>{
+        ev.preventDefault();
+        this.setState({ username: ev.target.value })
+    }
+
+
     render() {
         return (
             <div className="container">
@@ -46,20 +50,20 @@ class Chat extends React.Component {
                                 <div className="card-title">Global Chat</div>
                                 <hr />
                                 <div className="messages">
-                                    {this.state.messages.map(message => {
+                                    {this.state.mensajes.map((message,index) => {
                                         return (
-                                            <div>{message.author}: {message.message}</div>
+                                            <div key={index}>{message.author}: {message.message}</div>
                                         )
                                     })}
                                 </div>
 
                             </div>
                             <div className="card-footer">
-                                <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({ username: ev.target.value })} className="form-control" />
+                                <input type="text" placeholder="Nombre" value={this.state.nombre} onChange={ev => this.setState({ nombre: ev.target.value })} className="form-control" />
                                 <br />
-                                <input onKeyUp={this.sendMessage} type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
+                                <input onKeyUp={this.onEnviarMsj} type="text" placeholder="Enviar Mensaje" className="form-control" value={this.state.msj} onChange={ev => this.setState({ msj: ev.target.value })} />
                                 <br />
-                                <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                                <Button onClick={this.onEnviarMsj} className="btn btn-primary form-control">Send</Button>
                             </div>
                         </div>
                     </div>
